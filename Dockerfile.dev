@@ -1,0 +1,12 @@
+FROM ruby:3.1.2-alpine
+
+WORKDIR /opt/app
+
+RUN apk add --no-cache bash make g++ postgresql-client postgresql-dev git libc6-compat &&\
+    gem install rails &&\
+    bundle config set --local path '/opt/app/.bundle'
+
+# ENTRYPOINT ["sleep"]
+# CMD ["100000"]
+
+ENTRYPOINT ["development/start.sh"]
